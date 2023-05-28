@@ -3,6 +3,7 @@ package DTO;
 public class NotaFiscalDTO {
 
     private String nome_emp, endereco_emp, dataVenda, cnpj_emp, cod_cli, cod_prod, quant_prod;
+    private int numero_nota;
 
     public String getNome_emp() {
         return nome_emp;
@@ -60,5 +61,12 @@ public class NotaFiscalDTO {
         this.quant_prod = quant_prod;
     }
 
-    
+    public int getNumero_nota() {
+        return numero_nota;
+    }
+
+    public void setNumero_nota(int numero_nota) {
+        this.numero_nota = numero_nota;
+    }
+
 }

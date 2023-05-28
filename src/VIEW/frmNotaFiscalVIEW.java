@@ -7,8 +7,10 @@ package VIEW;
 import DAO.NotaFiscalDAO;
 import DTO.NotaFiscalDTO;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +21,9 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     /**
      * Creates new form frmNotaFiscalVIEW
      */
-    public frmNotaFiscalVIEW() {
+    public frmNotaFiscalVIEW() throws SQLException {
         initComponents();
+        listarValores();
     }
 
     /**
@@ -46,6 +49,9 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
         txtCodigoP = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         txtQuantComp = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaNota = new javax.swing.JTable();
+        btnPesquisar = new javax.swing.JButton();
         btnNota = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -54,7 +60,7 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
 
         jLabel2.setText("Endereço da Empresa");
 
-        jLabel3.setText("Data de Venda");
+        jLabel3.setText("Data de Venda (Ano/Mês/Dia");
 
         jLabel4.setText("CNPJ");
 
@@ -64,7 +70,27 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
 
         jLabel7.setText("Quantidade Comprada");
 
-        btnNota.setText("Gerar Nota");
+        tabelaNota.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Cod_Nota", "Nome Empresa", "Endereço", "Data de Venda", "CNPJ", "Cod_Cliente", "Cod_Produto", "Quant_Prod"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaNota);
+
+        btnPesquisar.setText("PESQUISAR");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
+        btnNota.setText("GERAR NOTA");
         btnNota.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNotaActionPerformed(evt);
@@ -76,35 +102,38 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1)
-                    .addComponent(txtQuantComp, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                    .addComponent(txtCodigoP)
-                    .addComponent(txtCodigoC)
-                    .addComponent(txtCNPJ)
-                    .addComponent(txtDatadeVenda)
-                    .addComponent(txtEndereco)
-                    .addComponent(txtEmpresa))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                .addComponent(btnNota)
-                .addContainerGap())
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnNota)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnPesquisar))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtQuantComp, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigoP, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCodigoC, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtCNPJ, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtDatadeVenda, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEndereco, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtEmpresa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnNota)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtEmpresa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel2)
@@ -129,8 +158,13 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtQuantComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtQuantComp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPesquisar)
+                    .addComponent(btnNota))
+                .addContainerGap())
         );
 
         pack();
@@ -164,6 +198,14 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnNotaActionPerformed
 
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        try {
+            listarValores();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmNotaFiscalVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -194,13 +236,18 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmNotaFiscalVIEW().setVisible(true);
+                try {
+                    new frmNotaFiscalVIEW().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmNotaFiscalVIEW.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNota;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -208,6 +255,8 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaNota;
     private javax.swing.JTextField txtCNPJ;
     private javax.swing.JTextField txtCodigoC;
     private javax.swing.JTextField txtCodigoP;
@@ -216,4 +265,24 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtQuantComp;
     // End of variables declaration//GEN-END:variables
+    
+    private void listarValores() throws SQLException{
+        NotaFiscalDAO objNotaFiscalDAO = new NotaFiscalDAO();
+        DefaultTableModel model = (DefaultTableModel) tabelaNota.getModel();
+        model.setNumRows(0);
+        ArrayList<NotaFiscalDTO> lista = objNotaFiscalDAO.pesquisarProduto();
+        for (int i = 0; i < lista.size(); i++) {
+            model.addRow(new Object[]{
+                lista.get(i).getNumero_nota(),
+                lista.get(i).getNome_emp(),
+                lista.get(i).getEndereco_emp(),
+                lista.get(i).getDataVenda(),
+                lista.get(i).getCnpj_emp(),
+                lista.get(i).getCod_cli(),
+                lista.get(i).getCod_prod(),
+                lista.get(i).getQuant_prod()
+            });
+        }
+    }
+    
 }
