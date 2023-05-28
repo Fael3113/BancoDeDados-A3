@@ -1,15 +1,19 @@
 package DAO;
 
 import DTO.ClienteDTO;
+import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ClienteDAO {
     
     Connection conexao;
     PreparedStatement pstm;
+    ResultSet rs;
+    ArrayList<ClienteDTO> lista = new ArrayList<>();
     
     public void cadastrarCliente(ClienteDTO objClienteDTO) throws SQLException {
         String sql = "insert into cliente (nome, cpf, email, endereço, dado_pagamento) values (?,?,?,?,?)";
@@ -27,10 +31,37 @@ public class ClienteDAO {
             pstm.execute();
             pstm.close();
             
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "ClienteDAO" + erro);
         }
     
+    }
+    
+    public ArrayList<ClienteDTO> pesquisarCliente() throws SQLException{
+        String sql = "select * from cliente";
+        
+        conexao = new ConexaoBD().conectaBD();
+        
+        try {
+            pstm = conexao.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            
+            while (rs.next()){
+                ClienteDTO objClienteDTO = new ClienteDTO();
+                objClienteDTO.setCod_cliente(rs.getInt("cod_cliente"));
+                objClienteDTO.setNome_cliente(rs.getString("nome"));
+                objClienteDTO.setCpf_cliente(rs.getString("cpf"));
+                objClienteDTO.setEmail_cliente(rs.getString("email"));
+                objClienteDTO.setEndereco_cliente(rs.getString("endereço"));
+                objClienteDTO.setPagamento_cliente(rs.getString("dado_pagamento"));
+                
+                lista.add(objClienteDTO);
+            }
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ClienteDAO Pesquisar: " + erro);
+        }
+        return lista;
     }
     
 }

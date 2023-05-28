@@ -2,7 +2,8 @@ package DTO;
 
 public class ClienteDTO {
     private String nome_cliente, cpf_cliente, email_cliente, endereco_cliente, pagamento_cliente;
-
+    private int cod_cliente;
+    
     public String getEndereco_cliente() {
         return endereco_cliente;
     }
@@ -41,6 +42,14 @@ public class ClienteDTO {
 
     public void setPagamento_cliente(String pagamento_cliente) {
         this.pagamento_cliente = pagamento_cliente;
+    }
+
+    public int getCod_cliente() {
+        return cod_cliente;
+    }
+
+    public void setCod_cliente(int cod_cliente) {
+        this.cod_cliente = cod_cliente;
     }
     
     
