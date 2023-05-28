@@ -21,8 +21,9 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
     /**
      * Creates new form frmProdutoVIEW
      */
-    public frmProdutoVIEW() {
+    public frmProdutoVIEW() throws SQLException {
         initComponents();
+        listarValores();
     }
 
     /**
@@ -187,7 +188,11 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new frmProdutoVIEW().setVisible(true);
+                try {
+                    new frmProdutoVIEW().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(frmProdutoVIEW.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
