@@ -3,13 +3,17 @@ package DAO;
 import DTO.ProdutoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 public class ProdutoDAO {
     
     Connection conexao;
     PreparedStatement pstm;
+    ResultSet rs;
+    ArrayList<ProdutoDTO> lista = new ArrayList<>();
     
     public void cadastrarProduto(ProdutoDTO objProdutoDTO) throws SQLException {
         String sql = "insert into produto (modelo, quantidade, valor_unitario) values (?,?,?)";
@@ -29,5 +33,29 @@ public class ProdutoDAO {
             JOptionPane.showMessageDialog(null, "ProdutoDAO" + erro);
         }
     }
+    
+   public ArrayList<ProdutoDTO> pesquisarProduto() throws SQLException{
+       String sql = "select * from produto";
+        
+        conexao = new ConexaoBD().conectaBD();
+        
+        try {
+            pstm = conexao.prepareStatement(sql);
+            rs = pstm.executeQuery();
+            
+            while (rs.next()){
+                ProdutoDTO objProdutoDTO = new ProdutoDTO();
+                objProdutoDTO.setCod_produto(rs.getInt("cod_produto"));
+                objProdutoDTO.setNome_produto(rs.getString("modelo"));
+                objProdutoDTO.setQuantidade_produto(rs.getString("quantidade"));
+                objProdutoDTO.setValor_produto(rs.getString("valor_unitario"));
+                
+                lista.add(objProdutoDTO);
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "ProdutoDAO Pesquisar: " + erro);
+        }
+        return lista;    
+   }
     
 }

@@ -2,6 +2,7 @@ package DTO;
 
 public class ProdutoDTO{
     private String nome_produto, valor_produto, quantidade_produto;
+    private int cod_produto;
 
     public String getNome_produto() {
         return nome_produto;
@@ -25,6 +26,14 @@ public class ProdutoDTO{
 
     public void setQuantidade_produto(String quantidade_produto) {
         this.quantidade_produto = quantidade_produto;
+    }
+
+    public int getCod_produto() {
+        return cod_produto;
+    }
+
+    public void setCod_produto(int cod_produto) {
+        this.cod_produto = cod_produto;
     }
    
             
