@@ -35,7 +35,7 @@ public class ProdutoDAO {
     }
     
    public ArrayList<ProdutoDTO> pesquisarProduto() throws SQLException{
-       String sql = "select * from produto";
+        String sql = "select * from produto";
         
         conexao = new ConexaoBD().conectaBD();
         
@@ -56,6 +56,26 @@ public class ProdutoDAO {
             JOptionPane.showMessageDialog(null, "ProdutoDAO Pesquisar: " + erro);
         }
         return lista;    
+   }
+   
+   public void alterarProduto(ProdutoDTO objProdutoDTO) throws SQLException{
+       String sql = "update produto set modelo = ?, quantidade = ?, valor_unitario = ? where cod_produto = ?";
+       
+       conexao = new ConexaoBD().conectaBD();
+       
+       try {
+            pstm = conexao.prepareStatement(sql);
+            pstm.setString(1, objProdutoDTO.getNome_produto());
+            pstm.setString(2, objProdutoDTO.getQuantidade_produto());
+            pstm.setString(3, objProdutoDTO.getValor_produto());
+            pstm.setInt(4, objProdutoDTO.getCod_produto());
+            
+            pstm.execute();
+            pstm.close();
+               
+       } catch (SQLException erro) {
+           JOptionPane.showMessageDialog(null, "ProdutoDAO Alterar: " + erro);
+       }
    }
     
 }
