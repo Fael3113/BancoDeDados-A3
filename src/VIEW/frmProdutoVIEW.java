@@ -38,20 +38,21 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        btnCadastrar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         txtNomeProduto = new javax.swing.JTextField();
         txtQuantidade = new javax.swing.JTextField();
         txtValor = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tabelaProduto = new javax.swing.JTable();
+        txtCodigo = new javax.swing.JTextField();
+        btnCadastrar = new javax.swing.JButton();
         btnPesquisar = new javax.swing.JButton();
         btnCarregarCampos = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnAlterar = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaProduto = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PRODUTO");
 
         jLabel1.setText("Modelo");
 
@@ -59,25 +60,16 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
 
         jLabel3.setText("Valor");
 
+        jLabel4.setText("Código");
+
+        txtCodigo.setEnabled(false);
+
         btnCadastrar.setText("CADASTRAR");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarActionPerformed(evt);
             }
         });
-
-        tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Cod_Produto", "Modelo", "Quantidade", "Valor Unitario"
-            }
-        ));
-        jScrollPane1.setViewportView(tabelaProduto);
 
         btnPesquisar.setText("PESQUISAR");
         btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
@@ -107,9 +99,18 @@ public class frmProdutoVIEW extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("Código");
-
-        txtCodigo.setEnabled(false);
+        tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Cod_Produto", "Modelo", "Quantidade", "Valor Unitario"
+            }
+        ));
+        jScrollPane1.setViewportView(tabelaProduto);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

@@ -3,6 +3,7 @@
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="title" type="java.lang.String" value="PRODUTO"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -115,6 +116,22 @@
         <Property name="text" type="java.lang.String" value="Valor"/>
       </Properties>
     </Component>
+    <Component class="javax.swing.JLabel" name="jLabel4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtNomeProduto">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtQuantidade">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtValor">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCodigo">
+      <Properties>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
     <Component class="javax.swing.JButton" name="btnCadastrar">
       <Properties>
         <Property name="text" type="java.lang.String" value="CADASTRAR"/>
@@ -123,11 +140,37 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNomeProduto">
+    <Component class="javax.swing.JButton" name="btnPesquisar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="PESQUISAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtQuantidade">
+    <Component class="javax.swing.JButton" name="btnCarregarCampos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="CARREGAR CAMPOS"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCarregarCamposActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtValor">
+    <Component class="javax.swing.JButton" name="btnLimpar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="LIMPAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAlterar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ALTERAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -177,47 +220,5 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnPesquisar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="PESQUISAR"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPesquisarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnCarregarCampos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="CARREGAR CAMPOS"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCarregarCamposActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnLimpar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="LIMPAR"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLimparActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAlterar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="ALTERAR"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAlterarActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jLabel4">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="C&#xf3;digo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCodigo">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
   </SubComponents>
 </Form>

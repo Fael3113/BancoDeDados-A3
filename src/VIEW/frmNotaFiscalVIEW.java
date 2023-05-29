@@ -36,18 +36,18 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        txtEmpresa = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtEndereco = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtDatadeVenda = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtCNPJ = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtCodigoC = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCodigoP = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        txtEmpresa = new javax.swing.JTextField();
+        txtEndereco = new javax.swing.JTextField();
+        txtDatadeVenda = new javax.swing.JTextField();
+        txtCNPJ = new javax.swing.JTextField();
+        txtCodigoC = new javax.swing.JTextField();
+        txtCodigoP = new javax.swing.JTextField();
         txtQuantComp = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaNota = new javax.swing.JTable();
@@ -55,6 +55,7 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
         btnNota = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("NOTAFISCAL");
 
         jLabel1.setText("Empresa");
 

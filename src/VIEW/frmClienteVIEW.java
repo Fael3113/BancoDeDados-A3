@@ -47,11 +47,12 @@ public class frmClienteVIEW extends javax.swing.JFrame {
         txtEnderco = new javax.swing.JTextField();
         txtFormaPagamento = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaCliente = new javax.swing.JTable();
-        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("CLIENTE");
 
         jLabel1.setText("Nome");
 
@@ -70,6 +71,13 @@ public class frmClienteVIEW extends javax.swing.JFrame {
             }
         });
 
+        btnPesquisar.setText("PESQUISAR");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
+
         tabelaCliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -82,13 +90,6 @@ public class frmClienteVIEW extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(tabelaCliente);
-
-        btnPesquisar.setText("PESQUISAR");
-        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPesquisarActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
