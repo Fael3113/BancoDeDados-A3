@@ -16,10 +16,8 @@ public class NotaFiscalDAO {
     ArrayList<NotaFiscalDTO> lista = new ArrayList<>();
 
     public void geraNota(NotaFiscalDTO objNotaFiscalDTO) throws SQLException {
-        String sql = "insert into notafiscal (nome_emp, endereço, datavenda, cnpj, cod_cliente, cod_produto, quant_prod) values (?,?,?,?,?,?,?)"
-                + "inner join notafiscal on produto.cod_produto  = notafiscal.cod_produto\n" +
-                  "where quant_prod > quantidade";
-        
+        String sql = "insert into notafiscal (nome_emp, endereço, datavenda, cnpj, cod_cliente, cod_produto, quant_prod) values (?,?,?,?,?,?,?)";
+                
         conexao = new ConexaoBD().conectaBD();
         
         try {
