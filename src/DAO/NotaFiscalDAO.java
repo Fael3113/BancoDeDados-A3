@@ -17,7 +17,7 @@ public class NotaFiscalDAO {
 
     public void geraNota(NotaFiscalDTO objNotaFiscalDTO) throws SQLException {
         String sql = "insert into notafiscal (nome_emp, endereço, datavenda, cnpj, cod_cliente, cod_produto, quant_prod) values (?,?,?,?,?,?,?)";
-                
+        
         conexao = new ConexaoBD().conectaBD();
         
         try {
@@ -32,11 +32,11 @@ public class NotaFiscalDAO {
             
             pstm.execute();
             pstm.close();
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "NotaFiscal DAO Cliente/Produto Indisponivel "
-                    + "Data inserida erroneamente " + erro);  
-        } 
-    }    
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "NotaFiscalDAO" + erro);
+        }
+    }
     
     public ArrayList<NotaFiscalDTO> pesquisarProduto() throws SQLException{
        String sql = "select * from notafiscal";
