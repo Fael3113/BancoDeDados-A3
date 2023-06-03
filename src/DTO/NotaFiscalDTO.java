@@ -2,8 +2,8 @@ package DTO;
 
 public class NotaFiscalDTO {
 
-    private String nome_emp, endereco_emp, dataVenda, cnpj_emp, cod_cli, cod_prod, quant_prod;
-    private int numero_nota;
+    private String nome_emp, endereco_emp, dataVenda, cnpj_emp, cod_cli;
+    private int numero_nota, quant_prod, cod_prod;
 
     public String getNome_emp() {
         return nome_emp;
@@ -45,28 +45,28 @@ public class NotaFiscalDTO {
         this.cod_cli = cod_cli;
     }
 
-    public String getCod_prod() {
-        return cod_prod;
-    }
-
-    public void setCod_prod(String cod_prod) {
-        this.cod_prod = cod_prod;
-    }
-
-    public String getQuant_prod() {
-        return quant_prod;
-    }
-
-    public void setQuant_prod(String quant_prod) {
-        this.quant_prod = quant_prod;
-    }
-
     public int getNumero_nota() {
         return numero_nota;
     }
 
     public void setNumero_nota(int numero_nota) {
         this.numero_nota = numero_nota;
+    }
+
+    public int getQuant_prod() {
+        return quant_prod;
+    }
+
+    public void setQuant_prod(int quant_prod) {
+        this.quant_prod = quant_prod;
+    }
+
+    public int getCod_prod() {
+        return cod_prod;
+    }
+
+    public void setCod_prod(int cod_prod) {
+        this.cod_prod = cod_prod;
     }
 
 }

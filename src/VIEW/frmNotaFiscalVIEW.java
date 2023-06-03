@@ -172,28 +172,8 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNotaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotaActionPerformed
-        String nome, endereco, datavenda, cnPJ, codClien, codProd, quantProd;
-        
-        nome = txtEmpresa.getText();
-        endereco = txtEndereco.getText();
-        datavenda = txtDatadeVenda.getText();
-        cnPJ = txtCNPJ.getText();
-        codClien = txtCodigoC.getText();
-        codProd = txtCodigoP.getText();
-        quantProd = txtQuantComp.getText();
-        
-        NotaFiscalDTO objNotaFiscalDTO = new NotaFiscalDTO();
-        objNotaFiscalDTO.setNome_emp(nome);
-        objNotaFiscalDTO.setEndereco_emp(endereco);
-        objNotaFiscalDTO.setDataVenda(datavenda);
-        objNotaFiscalDTO.setCnpj_emp(cnPJ);
-        objNotaFiscalDTO.setCod_cli(codClien);
-        objNotaFiscalDTO.setCod_prod(codProd);
-        objNotaFiscalDTO.setQuant_prod(quantProd);
-        
-        NotaFiscalDAO objNotaFiscalDAO = new NotaFiscalDAO();
         try {
-            objNotaFiscalDAO.geraNota(objNotaFiscalDTO);
+            cadastrarNota();
         } catch (SQLException ex) {
             Logger.getLogger(frmNotaFiscalVIEW.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -266,6 +246,35 @@ public class frmNotaFiscalVIEW extends javax.swing.JFrame {
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtQuantComp;
     // End of variables declaration//GEN-END:variables
+    
+    private void cadastrarNota() throws SQLException{
+        String nome, endereco, datavenda, cnPJ, codClien;
+        int quantProd, codProd;
+        
+        nome = txtEmpresa.getText();
+        endereco = txtEndereco.getText();
+        datavenda = txtDatadeVenda.getText();
+        cnPJ = txtCNPJ.getText();
+        codClien = txtCodigoC.getText();
+        codProd = Integer.parseInt(txtCodigoP.getText());
+        quantProd = Integer.parseInt(txtQuantComp.getText());
+        
+        NotaFiscalDTO objNotaFiscalDTO = new NotaFiscalDTO();
+        objNotaFiscalDTO.setNome_emp(nome);
+        objNotaFiscalDTO.setEndereco_emp(endereco);
+        objNotaFiscalDTO.setDataVenda(datavenda);
+        objNotaFiscalDTO.setCnpj_emp(cnPJ);
+        objNotaFiscalDTO.setCod_cli(codClien);
+        objNotaFiscalDTO.setCod_prod(codProd);
+        objNotaFiscalDTO.setQuant_prod(quantProd);
+        
+        NotaFiscalDAO objNotaFiscalDAO = new NotaFiscalDAO();
+        try {
+            objNotaFiscalDAO.geraNota(objNotaFiscalDTO);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmNotaFiscalVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     private void listarValores() throws SQLException{
         NotaFiscalDAO objNotaFiscalDAO = new NotaFiscalDAO();
