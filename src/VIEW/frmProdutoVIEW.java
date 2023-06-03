@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author User
  */
-public class frmProdutoVIEW extends javax.swing.JFrame{
+public class frmProdutoVIEW extends javax.swing.JFrame {
 
     /**
      * Creates new form frmProdutoVIEW
@@ -50,7 +50,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
         btnAlterar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tabelaProduto = new javax.swing.JTable();
-        btnAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PRODUTO");
@@ -113,13 +112,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
         ));
         jScrollPane1.setViewportView(tabelaProduto);
 
-        btnAtualizar.setText("ATUALIZAR");
-        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAtualizarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -127,10 +119,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCarregarCampos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAtualizar))
+                    .addComponent(btnCarregarCampos)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCadastrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
@@ -171,9 +160,7 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCarregarCampos)
-                    .addComponent(btnAtualizar))
+                .addComponent(btnCarregarCampos)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCadastrar)
@@ -219,20 +206,16 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
     private void btnAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarActionPerformed
         try {
             alterarProduto();
+        } catch (SQLException ex) {
+            Logger.getLogger(frmProdutoVIEW.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
             listarValores();
         } catch (SQLException ex) {
             Logger.getLogger(frmProdutoVIEW.class.getName()).log(Level.SEVERE, null, ex);
         }
         limparCampos();
     }//GEN-LAST:event_btnAlterarActionPerformed
-
-    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
-        try {
-            atualizarQuantidade();
-        } catch (SQLException ex) {
-            Logger.getLogger(frmProdutoVIEW.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnAtualizarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -275,7 +258,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAlterar;
-    private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnCarregarCampos;
     private javax.swing.JButton btnLimpar;
@@ -317,11 +299,10 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
     }
     
     private void cadastrarProduto(){
-        String modelo, valor;
-        int quantidade;
+        String modelo, quantidade, valor;
         
         modelo = txtNomeProduto.getText();
-        quantidade = Integer.parseInt(txtQuantidade.getText());
+        quantidade = txtQuantidade.getText(); 
         valor = txtValor.getText();
         
         ProdutoDTO objProdutoDTO = new ProdutoDTO();
@@ -345,12 +326,12 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
     }
     
     private void alterarProduto() throws SQLException{
-        int cod_produto, quantidade;
-        String modelo, valor;
+        int cod_produto;
+        String modelo, quantidade, valor;
         
         cod_produto = Integer.parseInt(txtCodigo.getText());
         modelo = txtNomeProduto.getText();
-        quantidade = Integer.parseInt(txtQuantidade.getText());
+        quantidade = txtQuantidade.getText();
         valor = txtValor.getText();
         
         ProdutoDTO objProdutoDTO = new ProdutoDTO();
@@ -361,17 +342,6 @@ public class frmProdutoVIEW extends javax.swing.JFrame{
         
         ProdutoDAO objProdutoDAO = new ProdutoDAO();
         objProdutoDAO.alterarProduto(objProdutoDTO);
-    }   
-   
-    private void atualizarQuantidade() throws SQLException {
-        int cod_produto;
-        cod_produto = Integer.parseInt(txtCodigo.getText());
-                
-        ProdutoDTO objProdutoDTO = new ProdutoDTO();
-        objProdutoDTO.setCod_produto(cod_produto);
-        
-        ProdutoDAO objProdutoDAO = new ProdutoDAO();
-        objProdutoDAO.atualizarQuantia(objProdutoDTO);
     }
-    
+     
 }

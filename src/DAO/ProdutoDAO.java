@@ -1,6 +1,5 @@
 package DAO;
 
-import DTO.NotaFiscalDTO;
 import DTO.ProdutoDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,19 +8,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-public class ProdutoDAO extends NotaFiscalDTO{
+public class ProdutoDAO {
     
     Connection conexao;
     PreparedStatement pstm;
     ResultSet rs;
     ArrayList<ProdutoDTO> lista = new ArrayList<>();
-
-    @Override
-    public int getQuant_prod() {
-        return super.getQuant_prod(); 
-    }
     
-        
     public void cadastrarProduto(ProdutoDTO objProdutoDTO) throws SQLException {
         String sql = "insert into produto (modelo, quantidade, valor_unitario) values (?,?,?)";
         
@@ -30,7 +23,7 @@ public class ProdutoDAO extends NotaFiscalDTO{
         try {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, objProdutoDTO.getNome_produto());
-            pstm.setInt(2, objProdutoDTO.getQuantidade_produto());
+            pstm.setString(2, objProdutoDTO.getQuantidade_produto());
             pstm.setString(3, objProdutoDTO.getValor_produto());
             
             pstm.execute();
@@ -54,7 +47,7 @@ public class ProdutoDAO extends NotaFiscalDTO{
                 ProdutoDTO objProdutoDTO = new ProdutoDTO();
                 objProdutoDTO.setCod_produto(rs.getInt("cod_produto"));
                 objProdutoDTO.setNome_produto(rs.getString("modelo"));
-                objProdutoDTO.setQuantidade_produto(rs.getInt("quantidade"));
+                objProdutoDTO.setQuantidade_produto(rs.getString("quantidade"));
                 objProdutoDTO.setValor_produto(rs.getString("valor_unitario"));
                 
                 lista.add(objProdutoDTO);
@@ -73,7 +66,7 @@ public class ProdutoDAO extends NotaFiscalDTO{
        try {
             pstm = conexao.prepareStatement(sql);
             pstm.setString(1, objProdutoDTO.getNome_produto());
-            pstm.setInt(2, objProdutoDTO.getQuantidade_produto());
+            pstm.setString(2, objProdutoDTO.getQuantidade_produto());
             pstm.setString(3, objProdutoDTO.getValor_produto());
             pstm.setInt(4, objProdutoDTO.getCod_produto());
             
@@ -84,9 +77,8 @@ public class ProdutoDAO extends NotaFiscalDTO{
            JOptionPane.showMessageDialog(null, "ProdutoDAO Alterar: " + erro);
        }
    }
-   
-    // Aperfeiçoar o código posteriormente
-    public void atualizarQuantia(ProdutoDTO objProdutoDTO) throws  SQLException {
+   /* Atualização posteriormente
+   public void atualizarQuantia(ProdutoDTO objProdutoDTO) throws  SQLException {
         
         conexao = new ConexaoBD().conectaBD();
                 
@@ -103,20 +95,5 @@ public class ProdutoDAO extends NotaFiscalDTO{
            JOptionPane.showMessageDialog(null, "ProdutoDAO Atualizar: " + e);
        }            
     }
-     
+    */
 }
-
-/*String sql = "select quantidade from produto where cod_produto = ?";
-            pstm = conexao.prepareStatement(sql);
-            if (rs != null && rs.next()) {
-                qtdOriginal = rs.getInt("quantidade");
-            }
-            pstm.setInt(1, objProdutoDTO.getCod_produto());
-            
-            String sql1 = "select quant_prod from notafiscal where cod_produto = ?";
-            pstm = conexao.prepareStatement(sql1);
-            if (rs != null && rs.next()) {
-                qtdSubtrair = rs.getInt("quant_prod");
-            }        
-            pstm.setInt(1, objProdutoDTO.getCod_produto());
-*/

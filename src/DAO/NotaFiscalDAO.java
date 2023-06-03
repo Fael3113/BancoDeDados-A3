@@ -27,15 +27,14 @@ public class NotaFiscalDAO {
             pstm.setString(3, objNotaFiscalDTO.getDataVenda());
             pstm.setString(4, objNotaFiscalDTO.getCnpj_emp());
             pstm.setString(5, objNotaFiscalDTO.getCod_cli());
-            pstm.setInt(6, objNotaFiscalDTO.getCod_prod());
-            pstm.setInt(7, objNotaFiscalDTO.getQuant_prod());
+            pstm.setString(6, objNotaFiscalDTO.getCod_prod());
+            pstm.setString(7, objNotaFiscalDTO.getQuant_prod());
             
             pstm.execute();
             pstm.close();
             
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "NotaFiscal DAO Cliente/Produto Indisponivel/"
-                    + "Data inserida erroneamente " + erro);  
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "NotaFiscalDAO" + erro);
         }
     }
     
@@ -56,8 +55,8 @@ public class NotaFiscalDAO {
                 objNotaFiscalDTO.setDataVenda(rs.getString("datavenda"));
                 objNotaFiscalDTO.setCnpj_emp(rs.getString("CNPJ"));
                 objNotaFiscalDTO.setCod_cli(rs.getString("cod_cliente"));
-                objNotaFiscalDTO.setCod_prod(rs.getInt("cod_produto"));
-                objNotaFiscalDTO.setQuant_prod(rs.getInt("quant_prod"));
+                objNotaFiscalDTO.setCod_prod(rs.getString("cod_produto"));
+                objNotaFiscalDTO.setQuant_prod(rs.getString("quant_prod"));
                 
                 lista.add(objNotaFiscalDTO);
             }
