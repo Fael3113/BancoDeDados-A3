@@ -5,3 +5,5 @@ Executar .jar do dist
 * Deve-se fazer a integração connector/j pessoalmente (versão mysql usada 8.0.33)
 * https://dev.mysql.com/downloads/connector/j/ 
 * Instalar .zip e descompactar (encontra-se na plataform independent)
+* JDK: 19
+* IDE utilizada: Apache Netbeans 18
